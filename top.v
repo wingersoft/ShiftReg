@@ -2,7 +2,7 @@
 `default_nettype none
 
 //
-// Test Shift register, clk 48 Mhz - 09-11-2021
+// Test Shift register, clk 48 Mhz - 13-11-2021
 //
 
 module top (
@@ -11,7 +11,7 @@ module top (
     output o_led_red,   
     output o_RCLK,
     output o_SRCLK,
-    output o_SEROUT );
+    output o_SER );
 
 // internal clock 48 Mhz
 wire clk;
@@ -34,7 +34,7 @@ ShiftReg SR (
     .o_Ready(w_Ready),
     .o_RCLK(o_RCLK),
     .o_SRCLK(o_SRCLK),
-    .o_SER_OUT(o_SEROUT) );
+    .o_SER(o_SER) );
 
 Control #(.N(24)) CONT (
     .i_clk(clk),

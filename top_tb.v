@@ -2,7 +2,7 @@
 `default_nettype none
 
 //
-// Test bench 74hc595 shift register - 10-11-2021
+// Test bench 74hc595 shift register - 13-11-2021
 //
 
 module top_tb; 
@@ -20,7 +20,7 @@ ShiftReg dut1 (
     .o_Ready(w_Ready),
     .o_RCLK(),
     .o_SRCLK(),
-    .o_SER_OUT() );
+    .o_SER() );
 
 Control #(.N(4)) dut2 (
     .i_clk(r_clk),
