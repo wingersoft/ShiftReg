@@ -1,0 +1,30 @@
+[*]
+[*] GTKWave Analyzer v3.3.77 (w)1999-2016 BSI
+[*] Fri Nov 12 18:43:06 2021
+[*]
+[dumpfile] "D:\GitProjects\Verilog\UpDuino\74hc595\top_tb.vcd"
+[dumpfile_mtime] "Fri Nov 12 18:41:48 2021"
+[dumpfile_size] 39814
+[savefile] "D:\GitProjects\Verilog\UpDuino\74hc595\top_tb.gtkw"
+[timestart] 0
+[size] 2560 1377
+[pos] -1 -1
+*-18.714958 1911900 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] top_tb.
+[sst_width] 42
+[signals_width] 142
+[sst_expanded] 0
+[sst_vpaned_height] 328
+@28
+top_tb.dut2.i_clk
+top_tb.dut1.i_Enable
+top_tb.dut1.o_Ready
+top_tb.dut1.o_SRCLK
+@29
+top_tb.dut1.r_RCLK
+@28
+top_tb.dut1.o_SER_OUT
+@22
+top_tb.dut2.o_data[7:0]
+[pattern_trace] 1
+[pattern_trace] 0

@@ -1,0 +1,8 @@
+set_io o_led_blue 39
+set_io o_led_green 40
+set_io o_led_red 41
+
+set_io o_RCLK 23
+set_io o_SRCLK 25
+set_io o_SEROUT 26
+ 
