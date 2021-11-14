@@ -6,8 +6,6 @@
 //
 
 module top_tb; 
-   
-reg r_clk = 0;
 
 wire w_Ready;
 wire w_Enable;
@@ -28,6 +26,7 @@ Control #(.N(4)) dut2 (
     .o_data(w_Data),
     .o_enable(w_Enable) );
 
+reg r_clk = 0;
 always
     #10 r_clk <= !r_clk;
 	
