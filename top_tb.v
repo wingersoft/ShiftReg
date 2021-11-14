@@ -2,7 +2,7 @@
 `default_nettype none
 
 //
-// Test bench 74hc595 shift register - 13-11-2021
+// Test bench 74hc595 shift register - 14-11-2021
 //
 
 module top_tb; 
@@ -24,9 +24,9 @@ ShiftReg dut1 (
 
 Control #(.N(4)) dut2 (
     .i_clk(r_clk),
-    .i_rdy(w_Ready),
+    .i_ready(w_Ready),
     .o_data(w_Data),
-    .o_en_in(w_Enable) );
+    .o_enable(w_Enable) );
 
 always
     #10 r_clk <= !r_clk;
@@ -34,7 +34,7 @@ always
 initial begin
     $dumpfile("top_tb.vcd");
     $dumpvars();
-    #5000 $finish;  
+    #2500 $finish;  
 end
 
 endmodule

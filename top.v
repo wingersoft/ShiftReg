@@ -2,7 +2,7 @@
 `default_nettype none
 
 //
-// Test Shift register, clk 48 Mhz - 13-11-2021
+// Test Shift register, clk 48 Mhz - 14-11-2021
 //
 
 module top (
@@ -38,8 +38,8 @@ ShiftReg SR (
 
 Control #(.N(24)) CONT (
     .i_clk(clk),
-    .i_rdy(w_Ready),
+    .i_ready(w_Ready),
     .o_data(w_Data),
-    .o_en_in(w_Enable) );
+    .o_enable(w_Enable) );
     
 endmodule // top

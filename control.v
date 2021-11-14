@@ -2,22 +2,22 @@
 `default_nettype none
 
 //
-// Control 74hc595 shift register - 09-11-2021
+// Control 74hc595 shift register - 14-11-2021
 // test setup - toggle between 'h55 and 'haa
 //
 
 module Control #(parameter N = 24) (
     input i_clk,
-    input i_rdy,
+    input i_ready,
     output [7:0] o_data,
-    output o_en_in );
+    output o_enable );
 
 reg [7:0] r_data = 8'h55;
-reg r_en_in = 0;
+reg r_enable = 0;
 reg [2:0] r_state = 0;
 
 assign o_data = r_data;
-assign o_en_in = r_en_in;
+assign o_enable = r_enable;
 
 //
 // Divide system clk to ~1 sec
@@ -35,15 +35,15 @@ assign w_timer = &r_counter;
 always @ (posedge i_clk) begin
     case  (r_state)
         0: begin
-            r_en_in <= 1;
+            r_enable <= 1;
             r_state <= 1;
         end
         1: begin
-            r_en_in <= 0;
+            r_enable <= 0;
             r_state <= 2;
         end
         2: begin
-            if (i_rdy)
+            if (i_ready)
                 r_state <= 3;
             else
                 r_state <= 2;
