@@ -27,6 +27,7 @@ wire w_Ready;
 wire w_Enable;
 wire [7:0] w_Data;
 
+// instantiate ShiftReg
 ShiftReg SR (
     .i_clk(clk),
     .i_Data(w_Data),
@@ -36,6 +37,7 @@ ShiftReg SR (
     .o_SRCLK(o_SRCLK),
     .o_SER(o_SER) );
 
+// instantiate Control
 Control #(.N(24)) CONT (
     .i_clk(clk),
     .i_ready(w_Ready),

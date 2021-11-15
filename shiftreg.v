@@ -75,4 +75,4 @@ always @ (posedge i_clk) begin
     endcase  
 end
 
-endmodule
+endmodule // ShifReg
