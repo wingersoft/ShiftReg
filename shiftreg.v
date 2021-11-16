@@ -2,7 +2,7 @@
 `default_nettype none
 
 //
-// 74hc595 shift register driver - 14-11-2021
+// 74hc595 shift register driver - 15-11-2021
 //
 
 module ShiftReg (
@@ -18,9 +18,9 @@ reg r_RCLK            = 0;
 reg r_SRCLK           = 0;
 reg r_Ready           = 1;
 
-reg [8:0] r_shifter   = 0;
-reg [3:0] r_shiftcnt  = 0;
-reg [3:0] r_state     = 0;
+reg [8:0] r_shifter   = 0; // shifter register
+reg [3:0] r_shiftcnt  = 0; // shift counter 0..7
+reg [3:0] s_state     = 0; // state 0..7
 
 assign o_Ready        = r_Ready;
 assign o_RCLK         = r_RCLK;
@@ -31,46 +31,46 @@ assign o_SER          = r_shifter[8];
 // Shift state machine
 //
 always @ (posedge i_clk) begin
-    case (r_state)
+    case (s_state)
         0: begin // idle, wait for i_enable
             if (i_Enable == 1) begin
                 r_shifter[7:0] <= i_Data;
-                r_state        <= 1;
+                s_state        <= 1;
                 r_shiftcnt     <= 0;
                 r_Ready        <= 0;
             end
         end
-        1: begin // load shifter
-            r_shifter[8:1] <= r_shifter[7:0];
-            r_state        <= 2;
+        1: begin // shift left 1 position
+            r_shifter <= r_shifter << 1;
+            s_state   <= 2;
         end   
         2: begin // wait one clock cycle 
-            r_state <= 3;
+            s_state <= 3;
         end
         3: begin // SRCLK = 1
             r_SRCLK <= 1;
-            r_state <= 4;
+            s_state <= 4;
         end   
         4: begin // SRCLK = 0
             r_SRCLK <= 0;
-            r_state <= 5;
+            s_state <= 5;
         end
         5: begin // check of all shift out
             if (r_shiftcnt == 7) begin
                 r_RCLK <= 1;
-                r_state <= 6;
+                s_state <= 6;
             end else begin
                 r_shiftcnt <= r_shiftcnt + 1;
-                r_state <= 1;
+                s_state <= 1;
             end
         end
         6: begin // RCLK = 0
             r_RCLK <= 0;
-            r_state <= 7;
+            s_state <= 7;
         end
         7: begin // Ready = 1
             r_Ready <= 1;
-            r_state <= 0;
+            s_state <= 0;
         end 
     endcase  
 end
