@@ -2,7 +2,7 @@
 `default_nettype none
 
 //
-// 74hc595 shift register driver - 15-11-2021
+// 74hc595 shift register driver - 18-11-2021
 //
 
 module ShiftReg (
@@ -57,18 +57,21 @@ always @ (posedge i_clk) begin
         end
         5: begin // check of all shift out
             if (r_shiftcnt == 7) begin
-                r_RCLK <= 1;
                 s_state <= 6;
             end else begin
                 r_shiftcnt <= r_shiftcnt + 1;
                 s_state <= 1;
             end
         end
-        6: begin // RCLK = 0
-            r_RCLK <= 0;
+        6: begin // RCLK = 1
+            r_RCLK <= 1;
             s_state <= 7;
         end
-        7: begin // Ready = 1
+        7: begin // RCLK = 0
+            r_RCLK <= 0;
+            s_state <= 8;
+        end
+        8: begin // Ready = 1
             r_Ready <= 1;
             s_state <= 0;
         end 

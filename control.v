@@ -2,7 +2,7 @@
 `default_nettype none
 
 //
-// Control 74hc595 shift register - 15-11-2021
+// Control 74hc595 shift register - 18-11-2021
 // test setup - toggle between 'h55 and 'haa
 //
 
@@ -20,14 +20,14 @@ assign o_data = r_data;
 assign o_enable = r_enable;
 
 //
-// Timer ~1 sec
+// Timer ~600 mS
 //
 reg [N:0] r_timer = 0;
 always @ (posedge i_clk)
     r_timer <= r_timer + 1;
 
 wire w_timer;
-assign w_timer = &r_timer;
+assign w_timer = (r_timer == 0);
 
 //
 // Control ShiftReg with 8'h55 and 8'haa data
