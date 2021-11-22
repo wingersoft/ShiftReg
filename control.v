@@ -6,7 +6,7 @@
 // test setup - toggle between 'h55 and 'haa
 //
 
-module Control #(parameter N = 24) (
+module Control #(parameter N = 48_000_000) (
     input i_clk,          // system clock
     input i_ready,        // shifter ready?
     output [7:0] o_data,  // data 0..255
@@ -20,15 +20,18 @@ assign o_data = r_data;
 assign o_enable = r_enable;
 
 //
-// Timer ~600 mS
+// Timer ~1000 mS
 //
-reg [N:0] r_timer = 0;
+reg [25:0] r_timer = 0;
+reg r_timeout = 0;
 always @ (posedge i_clk)
-    r_timer <= r_timer + 1;
-
-wire w_timer;
-assign w_timer = (r_timer == 0);
-
+    if (r_timer == N) begin
+        r_timer <= 0;
+        r_timeout <= 1;
+    end else begin
+        r_timeout <= 0;
+        r_timer <= r_timer + 1;
+    end
 //
 // Control ShiftReg with 8'h55 and 8'haa data
 //
@@ -49,7 +52,7 @@ always @ (posedge i_clk) begin
                 s_state <= 2;
         end
         3: begin // if timeout go to 4
-            if (w_timer)
+            if (r_timeout)
                 s_state <= 4;
             else
                 s_state <= 3;

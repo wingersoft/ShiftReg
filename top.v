@@ -38,7 +38,7 @@ ShiftReg SR (
     .o_SER(o_SER) );
 
 // instantiate Control
-Control #(.N(24)) CONT (
+Control #(.N(48_000_000)) CONT (
     .i_clk(clk),
     .i_ready(w_Ready),
     .o_data(w_Data),

@@ -22,7 +22,7 @@ ShiftReg dut1 (
     .o_SER() );
 
 // instantiate Control
-Control #(.N(4)) dut2 (
+Control #(.N(64)) dut2 (
     .i_clk(r_clk),
     .i_ready(w_Ready),
     .o_data(w_Data),
@@ -36,7 +36,7 @@ always
 initial begin
     $dumpfile("top_tb.vcd");
     $dumpvars();
-    #2500 $finish;  
+    #3000 $finish;  
 end
 
 endmodule // top_tb
