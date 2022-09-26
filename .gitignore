@@ -10,3 +10,6 @@
 *.out
 *.dblite
 *.history
+top_tb
+top_tb.vcd
+top_tb.gtkw

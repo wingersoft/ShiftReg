@@ -15,7 +15,7 @@ module top (
 
 // internal clock 48 Mhz
 wire clk;
-SB_HFOSC inthosc (.CLKHFPU(1'b1), .CLKHFEN(1'b1), .CLKHF(clk));
+// SB_HFOSC inthosc (.CLKHFPU(1'b1), .CLKHFEN(1'b1), .CLKHF(clk));
 
 // RGB led all off
 assign o_led_blue = 1'b1;
