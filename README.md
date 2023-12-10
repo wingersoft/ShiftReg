@@ -9,6 +9,27 @@
 
 * `top.v` Top module.
 * `top_tb.v` Test bench.
-* `ShiftReg.v` Shift register module.
-* `Control.v` Shift register controller module.
+* `shiftreg.v` Shift register module.
+* `control.v` Shift register controller module.
 * `up5k.pcf` Pin assigment.
+* `control.cmd` generate pdf for control.v
+* `shiftreg.cmdf` generate pdf for shiftreg/v
+
+## makefile
+``` makefile
+all: *.v
+	iverilog -o top_tb top_tb.v shiftreg.v control.v
+	vvp top_tb
+	gtkwave top_tb.gtkw 2> /dev/null
+
+pdf-shiftreg: shiftreg.v
+	apio raw "yosys < shiftreg.cmd"
+	cp ~/.yosys_show.pdf shiftreg.pdf
+
+pdf-control: control.v
+	apio raw "yosys < shiftreg.cmd"
+	cp ~/.yosys_show.pdf control.pdf
+
+clean:
+	rm -f top_tb top_tb.vcd *.pdf
+```

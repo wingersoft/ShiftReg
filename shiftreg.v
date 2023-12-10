@@ -2,7 +2,7 @@
 `default_nettype none
 
 //
-// 74hc595 shift register driver - 18-11-2021
+// 74hc595 shift register driver - 07-12-2023
 //
 
 module ShiftReg (
@@ -16,7 +16,7 @@ module ShiftReg (
 
 reg r_RCLK            = 0;
 reg r_SRCLK           = 0;
-reg r_Ready           = 1;
+reg r_Ready           = 0;
 
 reg [8:0] r_shifter   = 0; // shifter register
 reg [3:0] r_shiftcnt  = 0; // shift counter 0..7

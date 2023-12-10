@@ -3,8 +3,10 @@
 
 //
 // Control 74hc595 shift register - 18-11-2021
-// test setup - toggle between 'h55 and 'haa
+//                                - 08-12-2022
 //
+// test setup - toggle between 'h55 and 'haa
+// 
 
 module Control #(parameter N = 48_000_000) (
     input i_clk,          // system clock
